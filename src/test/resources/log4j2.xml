@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG">
+
+    <!-- Define a property for log file directory -->
+    <Properties>
+        <Property name="logPath">./logs</Property>
+    </Properties>
+
+    <Appenders>
+
+        <!-- Rolling File Appender: Logs messages to a file with rotation -->
+        <RollingFile name="File"
+                     fileName="${logPath}/automation2.log"
+                     filePattern="${logPath}/app-%d{yyyy-MM-dd}.log.gz">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %c{1}.%M(%L) - %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="5MB"/>
+            </Policies>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+
+        <!-- Log everything at DEBUG level and above -->
+        <Root level="DEBUG">
+            <!--<AppenderRef ref="Console"/>-->
+            <AppenderRef ref="File"/>
+        </Root>
+
+    </Loggers>
+
+</Configuration>
